@@ -1,0 +1,117 @@
+﻿@model IEnumerable<Uncafezin.WebAppUltimate.Models.ProductViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-lg-8">
+            <div id="carouselDept" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img class="img-fluid carousel-image rounded" src="~/img/coffee-wall-lg.jpeg" alt="Slide 1" />
+                    </div>
+                    <div class="carousel-item">
+                        <img class="img-fluid carousel-image rounded" src="~/img/alfajor-wall-lg.jpeg" alt="Slide 2" />
+                    </div>
+                    <div class="carousel-item">
+                        <img class="img-fluid carousel-image rounded" src="~/img/croissant-wall-lg.jpeg" alt="Slide 3" />
+                    </div>
+                </div>
+                <ul class="slick-dots" role="tablist">
+                    <li data-target="#carouselDept" data-slide-to="0" class="active"><button type="button">1</button></li>
+                    <li data-target="#carouselDept" data-slide-to="1"><button type="button">2</button></li>
+                    <li data-target="#carouselDept" data-slide-to="2"><button type="button">3</button></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-12 col-lg-4">
+            <div class="p-3 mb-4 rounded bg-info">
+                <div>
+                    <h3 class="mb-0 fw-bold">10% cashback on personal care</h3>
+                    <div class="my-2 fs-5">
+                        <p class="mb-0">Max cashback: $12</p>
+                        <span>Code:<span class="fw-bold text-dark">CARE12</span></span>
+                    </div>
+                    <a href="#" class="btn btn-dark">Compre Agora!</a>
+                </div>
+            </div>
+
+            <div class="p-3 rounded bg-warning">
+                <div>
+                    <h3 class="mb-0 fw-bold">10% cashback on personal care</h3>
+                    <div class="my-2 fs-5">
+                        <p class="mb-0">Max cashback: $12</p>
+                        <span>Code:<span class="fw-bold text-dark">CARE12</span></span>
+                    </div>
+                    <a href="#" class="btn btn-dark">Compre Agora!</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container my-2">
+    <input type="button" class="btn btn-lg btn-success" value="+ Novo Produto" data-bs-toggle="modal" data-bs-target="#CreateProductModal" />
+</div>
+<table class="table table-striped table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.CategoryId)</th>
+            <th>@Html.DisplayNameFor(model => model.CategoryName)</th>
+            <th>@Html.DisplayNameFor(model => model.Name)</th>
+            <th>@Html.DisplayNameFor(model => model.Price)</th>
+            <th>@Html.DisplayNameFor(model => model.Description)</th>
+            <th>@Html.DisplayNameFor(model => model.Stock)</th>
+            <th>@Html.DisplayNameFor(model => model.ImgUrl)</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody class="table-group-divider">
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.CategoryId)</td>
+                <td>@Html.DisplayFor(modelItem => item.CategoryName)</td>
+                <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                <td>@Html.DisplayFor(modelItem => item.Price)</td>
+                <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                <td>@Html.DisplayFor(modelItem => item.Stock)</td>
+                <td>@Html.DisplayFor(modelItem => item.ImgUrl)</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="_Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="modal fade" id="CreateProductModal" tabindex="-1" aria-labelledby="CreateProductModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            @await Html.PartialAsync("Create", new Uncafezin.WebAppUltimate.Models.ProductViewModel())
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="EditProductModal" tabindex="-1" aria-labelledby="EditProductModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            @await Html.PartialAsync("Edit", new Uncafezin.WebAppUltimate.Models.ProductViewModel())
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="DeleteProductModal" tabindex="-1" aria-labelledby="DeleteProductModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            @await Html.PartialAsync("Delete", new Uncafezin.WebAppUltimate.Models.ProductViewModel())
+        </div>
+    </div>
+</div>

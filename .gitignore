@@ -1,0 +1,7 @@
+﻿################################################################################
+# Este arquivo .gitignore foi criado automaticamente pelo Microsoft(R) Visual Studio.
+################################################################################
+
+/UncafezinWeb/Web.config
+/UncafezinWeb/Web.Debug.config
+/UncafezinWeb/Web.Release.config

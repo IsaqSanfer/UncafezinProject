@@ -1,0 +1,92 @@
+﻿@model Uncafezin.WebAppUltimate.Models.ProductViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>@Html.DisplayFor(model => model.Name)</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Name)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.Name)</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Price)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.Price)</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Description)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.Description)</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Stock)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.Stock)</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.ImgUrl)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.ImgUrl)</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.CategoryId)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.CategoryId)</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.CategoryName)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.CategoryName)</dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
+
+<hr />
+
+<div class="row">
+    <div class="col-12 col-lg-6">
+        <div class="principal-imgproduct bg-secondary">
+            <img width="600" height="500" class="rounded" alt="" src="@Html.DisplayFor(model => model.ImgUrl)" />
+        </div>
+        <div class="more-imgproduct w-100" d-inline-flex justify-content-between>
+            <div class="col-4 bg-secondary"><img width="150" height="150" class="rounded" alt="" src="@Html.DisplayFor(model => model.ImgUrl)" /></div>
+            <div class="col-4 bg-secondary"><img width="150" height="150" class="rounded" alt="" src="@Html.DisplayFor(model => model.ImgUrl)" /></div>
+            <div class="col-4 bg-secondary"><img width="150" height="150" class="rounded" alt="" src="@Html.DisplayFor(model => model.ImgUrl)" /></div>
+        </div>
+    </div>
+
+    <div class="col-12 col-lg-6">
+        <a href="#" class="text-danger">@Html.DisplayFor(model => model.CategoryName)</a><hr />
+
+        <h1 class="h1 fw-bolder">@Html.DisplayFor(model => model.Name)</h1>
+        <div class="fs-4"><strong>R$</strong>@Html.DisplayFor(model => model.Price)</div>
+        <hr />
+
+        <div class="mb-4">
+            <button type="button" class="btn btn-outline-secondary">250ml</button>
+            <button type="button" class="btn btn-outline-secondary">400ml</button>
+            <button type="button" class="btn btn-outline-secondary">500ml</button>
+        </div>
+
+        <div class="">
+            <div class="input-group input-spinner">
+                <input type="button" value="-" class="button-minus btn btn-sm" data-field="quantity">
+                <input type="number" step="1" max="10" value="1" name="quantity" class="quantity-field form-control-sm form-input">
+                <input type="button" value="+" class="button-plus btn btn-sm" data-field="quantity">
+            </div>
+        </div>
+
+        <button asp-action="" asp-route-id="@Model?.Id" class="btn-lg btn-success">Comprar</button>
+        <hr />
+
+        <div>
+            <table class="table table-borderless">
+                <tbody>
+                    <tr><td>COD:</td><td><span>#CAT</span>@Html.DisplayFor(model => model.CategoryId)<span>P</span>@Html.DisplayFor(model => model.Id)</td></tr>
+                    <tr><td>Disponibilidade:</td><td>Em estoque</td><td>Indisponível</td></tr>
+                    <tr><td>Tipo:</td><td>@Html.DisplayFor(model => model.CategoryName)</td></tr>
+                    <tr>
+                        <td>Entrega:</td>
+                        <td><small>01 dia.<span class="text-muted">(Free pickup today)</span></small></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
