@@ -5,10 +5,16 @@
     ViewBag.Title = "Complete";
 }
 
-<div class="container">
-    <h2>Checkout Complete</h2>
+<main class="form-signin text-center p-3 w-100 m-auto rounded-4 shadow-lg" style=" max-width: 330px; aria-labelledby="title">
+
+    <img width="72" height="57" class="mb-4 mx-auto" src="~/Content/Images/placeholder.gif" alt="" />
+
+    <h2>Compra Realizada!</h2>
     <hr />
 
-    <p>Thanks for your order! Your order number is: @Model</p>
-    <p>How about shopping for some more music in our @Html.ActionLink("store", "Index", "Home")</p>
-</div>
+    <p class="text-center">Obrigado pelo seu pedido! O número do seu pedido é: @Model.
+    <br />
+    Veja outros produtos enquando aguarda sua entrega!</p>
+
+    @Html.ActionLink("Voltar", "Index", "Home", new { @class = "btn btn-lg btn-outline-success w-75 mx-auto" })
+</main>

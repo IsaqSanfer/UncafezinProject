@@ -44,14 +44,14 @@
 <div class="container my-4">
     <div class="row">
         <main aria-labelledby="title" class="text-center p-3 mb-3 mx-auto rounded bg-warning">
-            <h2 id="title">@ViewBag.Title</h2>
+            <h2 id="title">Departamentos</h2>
         </main>
     </div>
     <div class="row g-4 row-cols-3 row-cols-md-4 row-cols-lg-5">
         <div class="col" style="height:350px">
-            <div class="card card-product h-100" 
-                 style="background: url(./Content/Images/banner-deal.jpg) no-repeat; background-size: cover; background-position-y: bottom; height: 100%">
-            </div>
+            <a href="#" class="card card-product h-100"
+               style="background: url(./Content/Images/banner-deal.jpg) no-repeat; background-size: cover; background-position-y: bottom; height: 100%">
+            </a>
         </div>
         @if (Model.Any())
         {
@@ -119,5 +119,17 @@
                 </div>
             </div>
         }
+    </div>
+</div>
+
+
+<div class="container my-4">
+    <div class="row">
+        <main aria-labelledby="title" class="text-center p-3 mb-3 mx-auto rounded bg-danger">
+            <h2 id="title">Mais Vendidos</h2>
+        </main>
+    </div>
+    <div class="row">
+        @{Html.RenderAction("DeptProduct", "Home"); }
     </div>
 </div>

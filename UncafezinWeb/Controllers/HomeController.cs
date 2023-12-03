@@ -17,21 +17,18 @@ namespace UncafezinWeb.Controllers
             return View(categories);
         }
 
-         // GET: Store/Browse
         public ActionResult Browse(int id)
-        {   //single() pq não terá duas categorias iguais
-            var categories = context.Categories.Include("Products").SingleOrDefault(c => c.CategoryId == id); 
+        {   
+            //single() pq não terá duas categorias iguais
+            var categories = context.Categories.Include("Products").SingleOrDefault(c => c.CategoryId == id);
             return View(categories);
         }
 
-        // GET: Store/Details/5
         public ActionResult Details(int id)
         {
             var productItem = context.Products.Find(id);
             return View(productItem);
         }
-
-        // GET: /Store/Dept
 
         [ChildActionOnly]
         public ActionResult DeptMenu()
@@ -39,6 +36,29 @@ namespace UncafezinWeb.Controllers
             var categories = context.Categories.ToList();
             return PartialView(categories);
         }
+
+        [ChildActionOnly]
+        public ActionResult DeptProduct()
+        {
+            var categoriesId = context.Categories.Select(c => c.CategoryId).ToList();
+            var twoProducts = new List<Product>();
+
+            foreach (var categoryId in categoriesId)
+            {
+                // enviando id por id para buscar os produtos...
+                var categoryWithProducts = context.Categories
+                    .Include("Products")
+                    .SingleOrDefault(c => c.CategoryId == categoryId);
+
+                if (categoryWithProducts != null)
+                {
+                    twoProducts.AddRange(categoryWithProducts.Products.Take(2));
+                }
+            }
+
+            return PartialView(twoProducts);
+        }
+
 
         public ActionResult Stores()
         {
