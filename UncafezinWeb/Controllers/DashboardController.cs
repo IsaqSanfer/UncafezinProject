@@ -11,6 +11,7 @@ using UncafezinWeb.Entities;
 
 namespace UncafezinWeb.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class DashboardController : Controller
     {
         private UncafezinContext db = new UncafezinContext();
@@ -49,7 +50,7 @@ namespace UncafezinWeb.Controllers
         // Para obter mais detalhes, confira https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProductId,CategoryId,Name,Price,ImgLink,Description")] Product product)
+        public ActionResult Create(Product product)
         {
             if (ModelState.IsValid)
             {
@@ -83,7 +84,7 @@ namespace UncafezinWeb.Controllers
         // Para obter mais detalhes, confira https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ProductId,CategoryId,Name,Price,ImgLink,Description")] Product product)
+        public ActionResult Edit(Product product)
         {
             if (ModelState.IsValid)
             {

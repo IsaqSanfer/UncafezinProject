@@ -171,3 +171,5 @@ C:\Users\isael\source\repos\UncafezinProject\UncafezinWeb\bin\Microsoft.Configur
 C:\Users\isael\source\repos\UncafezinProject\UncafezinWeb\bin\Microsoft.Configuration.ConfigurationBuilders.UserSecrets.dll
 C:\Users\isael\source\repos\UncafezinProject\UncafezinWeb\bin\Microsoft.Configuration.ConfigurationBuilders.Base.xml
 C:\Users\isael\source\repos\UncafezinProject\UncafezinWeb\bin\Microsoft.Configuration.ConfigurationBuilders.UserSecrets.xml
+C:\Users\isael\source\repos\UncafezinProject\UncafezinWeb\obj\Debug\UncafezinWeb.Migrations.InitialCreate.resources
+C:\Users\isael\source\repos\UncafezinProject\UncafezinWeb\obj\Debug\UncafezinWeb.csproj.GenerateResource.cache

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
@@ -6,6 +7,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using UncafezinWeb.Models;
@@ -422,6 +424,133 @@ namespace UncafezinWeb.Controllers
 
             base.Dispose(disposing);
         }
+
+        #region MyManagerUser
+        //[Authorize(Roles = "Admin")]
+        public ActionResult Users()
+        {
+            List<UsersViewModel> oUsersViewModelLista = new List<UsersViewModel>();
+            ApplicationDbContext context = new ApplicationDbContext();
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+
+            var Users = UserManager.Users.Select(m => new { m.Id, m.UserName, m.Roles }).OrderBy(m => m.UserName).ToList();
+
+            if (Users != null)
+            {
+                foreach (var user in Users)
+                {
+                    List<string> roles = new List<string>();
+                    if (user.Roles != null)
+                    {
+                        foreach (var roleid in user.Roles.Select(m => m.RoleId))
+                            roles.Add(roleManager.Roles.Where(m => m.Id == roleid).FirstOrDefault().Name);
+                    }
+                    oUsersViewModelLista.Add(new Models.UsersViewModel { UserId = user.Id, UserName = user.UserName, RolesUser = roles });
+                }
+            }
+
+            return View(oUsersViewModelLista);
+        }
+
+        //[Authorize(Roles = "SA")]
+        public ActionResult Role()
+        {
+            ApplicationDbContext context = new ApplicationDbContext();
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+
+            RoleViewModel oRoleViewModel = new RoleViewModel();
+            oRoleViewModel.RolesLista = roleManager.Roles.Select(m => new RolesLista { RoleId = m.Id, RoleName = m.Name }).ToList();
+
+            return View(oRoleViewModel);
+        }
+
+        //[Authorize(Roles = "SA")]
+        [HttpPost]
+        public ActionResult Role(RoleViewModel oRoleViewModel)
+        {
+            try
+            {
+                ApplicationDbContext context = new ApplicationDbContext();
+
+                var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+
+                if (!roleManager.RoleExists(oRoleViewModel.RoleName))
+                {
+                    var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
+                    role.Name = oRoleViewModel.RoleName;
+                    roleManager.Create(role);
+                }
+            }
+            catch { }
+
+            return RedirectToAction("Role");
+        }
+
+        [Authorize(Roles = "SA")]
+        public ActionResult DeleteRoleUser(string userId, string roleName)
+        {
+            try
+            {
+                UserManager.RemoveFromRole(userId, roleName);
+            }
+            catch { }
+
+            return RedirectToAction("UserRole", "Account", new { id = userId });
+        }
+
+        //[Authorize(Roles = "SA")]
+        public ActionResult UserRole(string id)
+        {
+            ApplicationDbContext context = new ApplicationDbContext();
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+
+            ViewBag.Roles = roleManager.Roles;
+
+            ApplicationUser oApplicationUser = UserManager.FindById(id);
+            UserRoleViewModel oUserRoleViewModel = new UserRoleViewModel();
+
+            if (oApplicationUser != null)
+            {
+                List<string> roles = new List<string>();
+
+                foreach (var role in oApplicationUser.Roles)
+                {
+                    roles.Add(roleManager.Roles.Where(m => m.Id == role.RoleId).FirstOrDefault().Name);
+                }
+
+                oUserRoleViewModel.UserId = oApplicationUser.Id;
+                oUserRoleViewModel.RoleName = oApplicationUser.UserName;
+                oUserRoleViewModel.RolesUser = roles;
+            }
+
+            return View(oUserRoleViewModel);
+        }
+
+        //[Authorize(Roles = "SA")]
+        [HttpPost]
+        public ActionResult UserRole(UserRoleViewModel oUserRoleViewModel)
+        {
+            try
+            {
+                if (!String.IsNullOrEmpty(oUserRoleViewModel.UserId) && !String.IsNullOrEmpty(oUserRoleViewModel.RoleName))
+                    this.UserManager.AddToRole(oUserRoleViewModel.UserId, oUserRoleViewModel.RoleName);
+            }
+            catch { }
+            return RedirectToAction("UserRole", "Account");
+        }
+
+        [Authorize(Roles = "SA")]
+        public ActionResult DeleteUser(string id)
+        {
+            try
+            {
+                ApplicationUser oApplicationUser = UserManager.FindById(id);
+                UserManager.Delete(oApplicationUser);
+            }
+            catch { }
+            return RedirectToAction("Users");
+        }
+        #endregion
 
         #region Auxiliares
         // Usado para proteção XSRF ao adicionar logons externos

@@ -13,13 +13,14 @@ namespace UncafezinWeb.Controllers
         UncafezinContext context = new UncafezinContext();
         public ActionResult Index()
         {
-            return View();
+            var categories = context.Categories.ToList();
+            return View(categories);
         }
 
          // GET: Store/Browse
-        public ActionResult Browse(string category)
-        {
-            var categories = context.Categories.Include("Products").Single(c => c.Name == category);
+        public ActionResult Browse(int id)
+        {   //single() pq não terá duas categorias iguais
+            var categories = context.Categories.Include("Products").SingleOrDefault(c => c.CategoryId == id); 
             return View(categories);
         }
 
@@ -28,6 +29,20 @@ namespace UncafezinWeb.Controllers
         {
             var productItem = context.Products.Find(id);
             return View(productItem);
+        }
+
+        // GET: /Store/Dept
+
+        [ChildActionOnly]
+        public ActionResult DeptMenu()
+        {
+            var categories = context.Categories.ToList();
+            return PartialView(categories);
+        }
+
+        public ActionResult Stores()
+        {
+            return View();
         }
 
         public ActionResult About()

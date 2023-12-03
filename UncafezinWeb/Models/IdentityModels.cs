@@ -6,9 +6,9 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace UncafezinWeb.Models
 {
-    // É possível adicionar dados do perfil do usuário adicionando mais propriedades na sua classe ApplicationUser, visite https://go.microsoft.com/fwlink/?LinkID=317594 para obter mais informações.
     public class ApplicationUser : IdentityUser
     {
+        //public bool IsAdmin { get; set; }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Observe que a authenticationType deve corresponder a uma definida em CookieAuthenticationOptions.AuthenticationType
@@ -20,10 +20,7 @@ namespace UncafezinWeb.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
-        {
-        }
+        public ApplicationDbContext() : base("UncafezinContext", throwIfV1Schema: false) { }
 
         public static ApplicationDbContext Create()
         {
