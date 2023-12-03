@@ -10,3 +10,6 @@
 /.vs/UncafezinProject/FileContentIndex/912476ef-e1e4-4ed8-9e33-927127fc4e01.vsidx
 /.vs/UncafezinProject/FileContentIndex/98dcb3f8-56ab-410d-8ade-ad74aa79436e.vsidx
 /.vs/UncafezinProject/FileContentIndex/d81ef264-a36b-4f3f-93f2-7c6c53ba32ef.vsidx
+/UncafezinWeb/Web.config
+/UncafezinWeb/Web.Debug.config
+/UncafezinWeb/Web.Release.config
