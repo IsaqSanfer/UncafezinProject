@@ -364,6 +364,7 @@
     <Content Include="Content\Images\chart.png" />
     <Content Include="Content\Images\coffee-wall-lg.jpeg" />
     <Content Include="Content\Images\croissant-wall-lg.jpeg" />
+    <Content Include="Content\Images\croissant-wall-sm.jpeg" />
     <Content Include="Content\Images\donuts-wall-lg.jpeg" />
     <Content Include="Content\Images\granos-cafe-md.jpg" />
     <Content Include="Content\Images\imagem_400_300.svg" />
