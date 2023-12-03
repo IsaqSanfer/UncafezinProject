@@ -14,7 +14,7 @@
         @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
         {
             @Html.AntiForgeryToken()
-            <img width="72" height="57" class="mb-4 mx-auto" src="~/Content/Images/placeholder.gif" alt="" />
+            <img width="72" height="57" class="mb-4 mx-auto" src="~/Content/Images/placeholder.gif" alt="logo" />
             <h4>Use uma conta local para fazer o login</h4>
 
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })

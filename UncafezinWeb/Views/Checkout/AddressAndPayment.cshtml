@@ -8,7 +8,7 @@
     <main>
         <!--HEADERPAGE-->
         <div class="py-5 text-center">
-            <img width="75" class="d-block mx-auto mb-4 rounded bg-secondary-subtle" src="~/Content/Images/placeholder.gif" alt="" />
+            <img width="75" class="d-block mx-auto mb-4 rounded bg-secondary-subtle" src="~/Content/Images/placeholder.gif" alt="logo" />
             <h2>Checkout</h2>
             <p class="lead">Página de pagamento e envio</p>
         </div>
@@ -64,7 +64,7 @@
 
                                 <div class="form-group col-6">
                                     @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "form-label" })
-                                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", type = "email" } })
+                                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", type = "email", value = "example@mail.com" } })
                                     @Html.ValidationMessageFor(model => model.Email, "", new { @class = "invalid-feedback" })
                                 </div>
                             </div>
@@ -131,7 +131,7 @@
                             <div class="row col-md-6 p-2 me-auto bg-body-tertiary shadow rounded">
                                 <div class="col-12">
                                     <label for="ccNumber" class="form-label">Numero do Cartão</label>
-                                    <input type="text" class="form-control" id="ccNumber" placeholder="" />
+                                    <input type="tel" class="form-control" id="ccNumber" placeholder="0000 0000 0000 0000" maxlength="16"  />
                                     <div class="invalid-feedback">Credit card number is required</div>
                                 </div>
 
@@ -159,7 +159,7 @@
                             <div class="col-10 col-md-3 p-2 ms-2 text-center order-md-last bg-body-tertiary shadow rounded">
                                 <strong class="w-100">QRCODE apenas pra TESTE</strong>
                                 <div class="mx-auto">
-                                    <img height="150" class="w-100" src="~/Content/Images/chart.png" alt="qrCode" />
+                                    <img class="w-100" src="~/Content/Images/chart.png" alt="qrCode" />
                                 </div>
                             </div>
                         </div>

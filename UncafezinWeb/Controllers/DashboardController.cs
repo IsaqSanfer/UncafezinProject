@@ -39,7 +39,7 @@ namespace UncafezinWeb.Controllers
         }
 
         // GET: Dashboard/Create
-        public ActionResult Create()
+        public ActionResult CreateProduct()
         {
             ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "Name");
             return View();
@@ -50,7 +50,7 @@ namespace UncafezinWeb.Controllers
         // Para obter mais detalhes, confira https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Product product)
+        public ActionResult CreateProduct(Product product)
         {
             if (ModelState.IsValid)
             {

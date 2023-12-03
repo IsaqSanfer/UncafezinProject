@@ -71,7 +71,7 @@
                             </div>
                             @if (User.IsInRole("Admin"))
                             {
-                                <div>
+                                <div class="w-100 text-center">
                                     @Html.ActionLink("Editar", "Edit", "Dashboard", new { id = item.CategoryId }, new { @class = "btn btn-info" }) |
                                     @*@Html.ActionLink("Detalhes", "Details", new { id = item.CategoryId }) |*@
                                     @Html.ActionLink("Excluir", "Delete", "Dashboard", new { id = item.CategoryId }, new { @class = "btn btn-danger" })
