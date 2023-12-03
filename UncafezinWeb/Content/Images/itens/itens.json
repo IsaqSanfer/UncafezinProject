@@ -1,0 +1,86 @@
+[
+  {
+    "Id": "01",
+    "ProductCategory": "Cafés",
+    "ProductName": "Espresso Tradicional",
+    "ProductDescription": "Café puro e feito sob pressão, sem adição de leite ou qualquer outro ingrediente.",
+    "ProductPrice": 9.90
+  },
+  {
+    "Id": "02",
+    "ProductCategory": "Cafés",
+    "ProductName": "Espresso com Chantilly",
+    "ProductDescription": "Café puro e feito sob pressão com uma cobertura de chantilly.",
+    "ProductPrice": 9.90
+  },
+  {
+    "Id": "03",
+    "ProductCategory": "Cafés",
+    "ProductName": "Latte",
+    "ProductDescription": "Café espresso com leite vaporizado.",
+    "ProductPrice": 9.90
+  },
+  {
+    "Id": "04",
+    "ProductCategory": "Cafés",
+    "ProductName": "Cappuccino",
+    "ProductDescription": "Café espresso com leite vaporizado, resultando em um creme bem consistente.",
+    "ProductPrice": 12.90
+  },
+  {
+    "Id": "05",
+    "ProductCategory": "Cafés",
+    "ProductName": "Macchiato",
+    "ProductDescription": "Leite vaporizado, baunilha e café expresso.",
+    "ProductPrice": 12.90
+  },
+  {
+    "Id": "06",
+    "ProductCategory": "Cafés",
+    "ProductName": "Mocaccino",
+    "ProductDescription": "Café espresso, leite vaporizado, espuma de leite e calda de chocolate.",
+    "ProductPrice": 12.90
+  },
+  {
+    "Id": "07",
+    "ProductCategory": "Chás",
+    "ProductName": "Chá preto com pêssego (com ou sem gás)",
+    "ProductDescription": "A combinação perfeita entre o chá preto e o suco de pêssego.",
+    "ProductPrice": 7.90
+  },
+  {
+    "Id": "08",
+    "ProductCategory": "Chás",
+    "ProductName": "Chá preto com frutas vermelhas",
+    "ProductDescription": "Notas de chá preto, frutas vermelhas como mirtilo e cranberry.",
+    "ProductPrice": 7.90
+  },
+  {
+    "Id": "09",
+    "ProductCategory": "Chás",
+    "ProductName": "Chá verde com gengibre e limão",
+    "ProductDescription": "Esse chá verde traz o frescor do limão unido à potência do gengibre.",
+    "ProductPrice": 7.90
+  },
+  {
+    "Id": "10",
+    "ProductCategory": "Alcóolicos",
+    "ProductName": "Café com Absolut",
+    "ProductDescription": "Um café mais cítrico e suave, limão e Absolut.",
+    "ProductPrice": 39.90
+  },
+  {
+    "Id": "11",
+    "ProductCategory": "Alcóolicos",
+    "ProductName": "Espresso Gin Tônica",
+    "ProductDescription": "Café gelado, gin tônica, cranberry e gelo.",
+    "ProductPrice": 39.90
+  }, 
+  {
+    "Id": "12",
+    "ProductCategory": "Alcóolicos",
+    "ProductName": "Irish Coffee",
+    "ProductDescription": "Café com uísque irlandês e uma camada de creme de chantilly.",
+    "ProductPrice": 39.90
+  }
+]

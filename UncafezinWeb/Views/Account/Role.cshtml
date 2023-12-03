@@ -1,0 +1,49 @@
+﻿@model UncafezinWeb.Models.RoleViewModel
+@{
+    ViewBag.Title = "Role";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+<br />
+<a href="@Url.Action(" Users", "Account" )" class="btn btn-default">Users</a>  <a href="@Url.Action(" Role", "Account" )" class="btn btn-default">Role</a>
+
+<h2>Role</h2>
+
+@using (Html.BeginForm("Role", "Account", FormMethod.Post))
+{
+<div class="form-group">
+    @Html.TextBoxFor(m => m.RoleName, new { @Class = "form-control", @placeholder = "role. ex: Marketing" })
+</div>
+
+<div class="form-group">
+    <input type="submit" value="Salvar" class="btn btn-primary btn-block" />
+</div>
+}
+
+
+@if (Model.RolesLista != null)
+{
+<br />
+<hr />
+<table class="table">
+    <thead>
+        <tr>
+            <th>Role</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.RolesLista)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoleName)
+            </td>
+            <td>
+                @Html.ActionLink("Remove Role", "DeleteRole", new { rolename = item.RoleName }, new { @onclick = "return confirm('Tem certeza que deseja excluir este role?')" })
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+}
