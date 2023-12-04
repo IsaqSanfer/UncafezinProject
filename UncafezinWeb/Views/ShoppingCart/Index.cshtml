@@ -54,7 +54,7 @@
         {
             <li id="row-@item.RecordId" class="list-group-item d-flex lh-sm">
                 <div class="col-6 text-start">
-                    <h6 class="my-0">@Html.ActionLink(item.Product.Name, "Details", "Store", new { id = item.ProductId }, null)</h6>
+                    <h6 class="my-0">@Html.ActionLink(item.Product.Name, "Details", "Home", new { id = item.ProductId }, null)</h6>
                     <small class="fst-italic text-nowrap overflow-hidden text-body-secondary d-none d-lg-block">@item.Product.Description</small>
                 </div>
                 <span class="col-2 text-center text-body-secondary" id="item-count-@item.RecordId">@item.Count</span>
@@ -71,6 +71,6 @@
         </li>
     </ul>
     <hr class="my-4" />
-    @Html.ActionLink("Continuar Comprando", "Index", "Home", null, new { @class = "float-start mb-4 btn btn-lg btn-secondary" })
-    @Html.ActionLink("Continuar >>", "AddressAndPayment", "Checkout", null, new { @class = "float-end mb-4 btn btn-lg btn-success" })
+    @Html.ActionLink("Adicionar Mais Produtos", "Index", "Home", null, new { @class = "float-start col-12 col-sm-3 mb-4 btn btn-lg btn-secondary" })
+    @Html.ActionLink("Continuar >>", "AddressAndPayment", "Checkout", null, new { @class = "float-end col-12 col-sm-3 mb-4 btn btn-lg btn-success " })
 </div>

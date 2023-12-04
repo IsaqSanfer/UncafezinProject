@@ -20,14 +20,17 @@
         <div class="form-floating">
             @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "name@example.com", type = "email" })
             @Html.LabelFor(m => m.Email, new { @class = "form-label" })
+            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
         </div>
         <div class="form-floating">
             @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Password", type = "password" })
             @Html.LabelFor(m => m.Password, new { @class = "form-label" })
+            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
         </div>
         <div class="form-floating my-3">
-            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control"})
+            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
             @Html.LabelFor(m => m.ConfirmPassword, new { @class = "form-label" })
+            @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
         </div>
 
         <button type="submit" class="btn btn-lg btn-outline-warning w-75 mx-auto">Registrar</button>
