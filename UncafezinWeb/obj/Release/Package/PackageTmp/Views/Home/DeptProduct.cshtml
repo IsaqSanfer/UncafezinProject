@@ -2,21 +2,21 @@
 
 <div class="container mb-4">
     <div class="row g-4 row-cols-2 row-cols-md-3 row-cols-lg-4">
-        <div class="col">
+        <div class="col p-1 px-sm-3">
             <a href="#" class="card card-product h-100"
-               style="background: url(./Content/Images/croissant-wall-sm.jpeg) no-repeat; background-size: cover; background-position-y: bottom; height: 100%"></a>
+               style="background: url(./Content/Images/croissant-wall-sm.jpg) no-repeat; background-size: cover; background-position-y: bottom; height: 100%"></a>
         </div>
         @foreach (var item in Model)
         {
-            <div class="col">
+            <div class="col p-1 px-sm-3">
                 <div class="card card-product h-100">
-                    <div class="card-body">
+                    <div class="card-body py-0 py-sm-3">
                         <div class="text-center position-relative">
                             <div class="position-absolute top-0 start-0">
                                 <span class="badge bg-info">Disponível</span>
                             </div>
                             <a href="@Url.Action("Details", new { id = item.ProductId })">
-                                <img width="220" class="mb-3 img-fluid" @*src="https://freshcart.codescandy.com/assets/images/products/product-img-1.jpg"*@ src="@item.ImgLink" alt="Imagem de @item.Name" />
+                                <img width="220" class="mb-3 img-fluid" src="@item.ImgLink" alt="Imagem de @item.Name" />
                             </a>
                         </div>
                         <div class="text-small mb-1">
