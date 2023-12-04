@@ -1,0 +1,81 @@
+﻿﻿@model UncafezinWeb.Models.ShoppingCartViewModel
+
+@{
+    ViewBag.Title = "Carrinho";
+}
+<script type="text/javascript" src="~/Scripts/jquery-3.7.1.min.js"></script>
+<script type="text/javascript">
+    jQuery(function () {
+        jQuery(".RemoveLink").on('click', function () {
+            var recordToDelete = jQuery(this).attr("data-id");
+
+            if (recordToDelete != '') {
+                jQuery.post("/ShoppingCart/RemoveFromCart", { "id": recordToDelete },
+                    function (data) {
+                        data.ItemCount == 0 ? jQuery('#row-' + data.DeleteId).fadeOut('slow') : jQuery('#item-count-' + data.DeleteId).text(data.ItemCount);
+
+                    jQuery('#cart-total').text(data.CartTotal);
+                    jQuery('#update-message').text(data.Message);
+                    jQuery('#cart-status').text(data.CartCount);
+                });
+            }
+        });
+    });
+
+    function cartUpdate() {
+        var json = context.get_data();
+        var data = Sys.Serialization.JavaScriptSerializer.deserialize(json);
+
+        data.ItemCount == 0 ? jQuery('#row-' + data.DeleteId).fadeOut('slow') : jQuery('#item-count-' + data.DeleteId).text(data.ItemCount);
+
+        jQuery('#cart-total').text(data.CartTotal);
+        jQuery('#update-message').text(data.Message);
+        jQuery('#cart-status').text(data.CartCount);
+    }
+</script>
+
+<div class="container">
+    <!--HEADERPAGE-->
+    <div class="py-4 text-center">
+        <img width="75" class="d-block mx-auto mb-4 rounded bg-secondary-subtle" src="~/Content/Images/placeholder.gif" />
+        <h2>@ViewBag.Title</h2>
+    </div>
+
+    <ul class="list-group mx-auto col-12 col-md-9">
+        <li class="list-group-item bg-body-tertiary d-flex justify-content-between lh-sm">
+            <span class="col-6 text-start">Produto</span>
+            <span class="col-2 text-center">Quantidade</span>
+            <span class="col-3 text-center">Preço Und.</span>
+            <span class="col-1">&nbsp;</span>
+        </li>
+        @foreach (var item in Model.CartItems)
+        {
+            <li id="row-@item.RecordId" class="list-group-item d-flex lh-sm">
+                <div class="col-6 text-start">
+                    <h6 class="my-0">@Html.ActionLink(item.Product.Name, "Details", "Store", new { id = item.ProductId }, null)</h6>
+                    <small class="fst-italic text-nowrap overflow-hidden text-body-secondary d-none d-lg-block">@item.Product.Description</small>
+                </div>
+                <span class="col-2 text-center text-body-secondary" id="item-count-@item.RecordId">@item.Count</span>
+                <span class="col-3 text-center text-body-secondary">R$ @item.Product.Price</span>
+                <button type="button" class="RemoveLink btn btn-sm btn-danger" data-id="@item.RecordId" title="Remover">
+                    <span class="material-symbols-outlined">delete</span>
+                </button>
+            </li>
+        }
+
+        @*<li class="list-group-item d-flex justify-content-between bg-body-tertiary">
+                <div class="text-success">
+                    <h6 class="my-0">Código Promocional</h6><small>EXAMPLECODE</small>
+                </div>
+                <span class="text-success">−$5</span>
+            </li>*@
+
+        <li class="list-group-item bg-body-secondary d-flex justify-content-between">
+            <span class="col-8">Total</span>
+            <strong class="col-3 text-center bg-light rounded" id="cart-total">R$ @Model.CartTotal</strong>
+            <span class="col-1">&nbsp;</span>
+        </li>
+    </ul>
+    <hr class="my-4" />
+    @Html.ActionLink("Continuar >>", "AddressAndPayment", "Checkout", null, new { @class = "float-end mb-4 btn btn-lg btn-success" })
+</div>

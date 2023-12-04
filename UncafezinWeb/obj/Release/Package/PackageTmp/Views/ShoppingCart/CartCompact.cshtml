@@ -1,0 +1,23 @@
+﻿
+<ul class="list-group my-3">
+    <li class="list-group-item d-flex justify-content-between lh-sm">
+        <strong class="w-50 text-start">PRODUTO</strong>
+        <strong class="w-25 text-center">QTD</strong>
+        <strong class="w-25 text-end">PREÇO</strong>
+    </li>
+    @foreach (var item in Model.CartItems)
+    {
+        <li id="row-@item.RecordId" class="list-group-item d-flex justify-content-between lh-sm">
+            <div class="w-50">
+                <h6 class="my-0">@item.Product.Name</h6>
+            </div>
+            <span class="w-25 text-center text-body-secondary" id="item-count-@item.RecordId">@item.Count</span>
+            <span class="w-25 text-end text-body-secondary">R$ @item.Product.Price</span>
+        </li>
+    }
+
+    <li class="list-group-item bg-body-secondary d-flex justify-content-between">
+        <strong>Total</strong>
+        <strong id="cart-total">R$ @Model.CartTotal</strong>
+    </li>
+</ul>

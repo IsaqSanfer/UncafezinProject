@@ -1,0 +1,214 @@
+﻿@model UncafezinWeb.Entities.Order
+
+@{
+    ViewBag.Title = "Pagamento e Cobrança";
+}
+
+<div class="container rounded-3 bg-secondary-subtle mb-3">
+    <main>
+        <!--HEADERPAGE-->
+        <div class="py-5 text-center">
+            <img width="75" class="d-block mx-auto mb-4 rounded bg-secondary-subtle" src="~/Content/Images/placeholder.gif" alt="logo" />
+            <h2>Checkout</h2>
+            <p class="lead">Página de pagamento e envio</p>
+        </div>
+
+        @using (Html.BeginForm())
+        {
+            <!--RESUMO-->
+            <div class="row g-5">
+                <div class="col-md-5 col-lg-4 order-md-last">
+                    <h4 class="d-flex justify-content-between align-items-center">
+                        <span class="text-success-emphasis">Seu Carrinho</span>
+                        <span class="badge bg-success rounded-pill">@{Html.RenderAction("CartSummary", "ShoppingCart");}</span>
+                    </h4>
+
+                    @{Html.RenderAction("CartCompact", "ShoppingCart"); }
+
+                    <!--COUPON AREA-->
+                    <div class="card bg-light p-2">
+                        <div class="input-group">
+                            @Html.Label("PromoCode", "PromoCode", new { @class = "form-label visually-hidden" })
+                            @Html.TextBox("PromoCode", null, new { @class = "form-control text-uppercase fw-bold", placeholder = " CUPOM" })
+                            <button type="button" class="btn btn-outline-success fw-bold">Resgatar</button>
+                            <small class="w-100 text-end">Promoção: compra gratuita com o código: "FREE"</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!--FORMULARIO ENTREGA-->
+                <div class="col-md-7 col-lg-8">
+                    @Html.AntiForgeryToken()
+                    <h4>Endereço de entrega</h4>
+                    <form class="needs-validation">
+                        @Html.ValidationSummary(true, "", new { @class = "invalid-feedback" })
+                        <div class="row p-2 bg-body-tertiary shadow rounded mt-3 ms-1 g-3">
+                            <div id="receiver" class="row">
+                                <div class="form-group col-6">
+                                    @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "form-label" })
+                                    @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "invalid-feedback" })
+                                </div>
+
+                                <div class="form-group col-6">
+                                    @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "form-label" })
+                                    @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "invalid-feedback" })
+                                </div>
+
+                                <div class="form-group col-6">
+                                    @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "form-label" })
+                                    @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control", type = "tel", pattern = "[0-9]*", maxlength = "11", placeholder = "(99) 99999-9999", title = "Somente números" } })
+                                    @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "invalid-feedback" })
+                                </div>
+
+                                <div class="form-group col-6">
+                                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "form-label" })
+                                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", type = "email", value = "example@mail.com" } })
+                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "invalid-feedback" })
+                                </div>
+                            </div>
+                            <hr />
+                            <div id="delivery" class="row">
+                                <div class="form-group col-md-3">
+                                    @Html.LabelFor(model => model.PostalCode, htmlAttributes: new { @class = "form-label" })
+                                    @Html.EditorFor(model => model.PostalCode, new { htmlAttributes = new { @class = "form-control", type = "tel", pattern = "[0-9]*", maxlength = "8", placeholder = "99999-999", title = "Somente números" } })
+                                    @Html.ValidationMessageFor(model => model.PostalCode, "", new { @class = "invalid-feedback" })
+                                </div>
+
+                                <div class="form-group col-md-9">
+                                    @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "form-label" })
+                                    @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Address, "", new { @class = "invalid-feedback" })
+                                </div>
+
+                                <div class="form-group col-md-5">
+                                    @Html.LabelFor(model => model.District, htmlAttributes: new { @class = "form-label" })
+                                    @Html.EditorFor(model => model.District, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.District, "", new { @class = "invalid-feedback" })
+                                </div>
+
+                                <div class="form-group col-md-4">
+                                    @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "form-label" })
+                                    @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.City, "", new { @class = "invalid-feedback" })
+                                </div>
+
+                                <div class="form-group col-md-1">
+                                    @Html.LabelFor(model => model.State, htmlAttributes: new { @class = "form-label" })
+                                    @Html.EditorFor(model => model.State, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.State, "", new { @class = "invalid-feedback" })
+                                </div>
+
+                                <div class="form-group col-md-2">
+                                    @Html.LabelFor(model => model.Country, htmlAttributes: new { @class = "form-label" })
+                                    @Html.EditorFor(model => model.Country, new { htmlAttributes = new { @class = "form-control", @value = "Brasil" } })
+                                    @Html.ValidationMessageFor(model => model.Country, "", new { @class = "invalid-feedback" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr class="my-4" />
+
+                        <!--FORMULARIO ENTREGA-->
+                        <div id="payment" class="row">
+                            <h4 class="mb-3">Pagamento</h4>
+                            <div class="p-3 col-12 d-inline-flex flex-row col-md-3 d-md-flex flex-md-column justify-content-md-evenly">
+                                <div class="form-check">
+                                    <input id="creditMethod" name="paymentMethod" type="radio" class="form-check-input" checked="" />
+                                    <label class="form-check-label" for="creditMethod">Crédito</label>
+                                </div>
+                                <div class="form-check">
+                                    <input id="debitMethod" name="paymentMethod" type="radio" class="form-check-input" />
+                                    <label class="form-check-label" for="debitMethod">Débito</label>
+                                </div>
+                                <div class="form-check">
+                                    <input id="pixMethod" name="paymentMethod" type="radio" class="form-check-input" />
+                                    <label class="form-check-label" for="pixMethod">Pix</label>
+                                </div>
+                            </div>
+
+                            <div class="row col-md-6 p-2 me-auto bg-body-tertiary shadow rounded">
+                                <div class="col-12">
+                                    <label for="ccNumber" class="form-label">Numero do Cartão</label>
+                                    <input type="tel" class="form-control" id="ccNumber" placeholder="0000 0000 0000 0000" maxlength="16"  />
+                                    <div class="invalid-feedback">Credit card number is required</div>
+                                </div>
+
+                                <div class="col-12">
+                                    <label for="ccName" class="form-label">Nome impresso no cartão</label>
+                                    <input type="text" class="form-control" id="ccName" placeholder="" />
+                                    <small class="text-body-secondary">Full name as displayed on card</small>
+                                    <div class="invalid-feedback">Name on card is required</div>
+                                </div>
+
+                                <div class="col-6">
+                                    <label for="ccExpiration" class="form-label">Validade</label>
+                                    <input type="tel" class="form-control" id="ccExpiration" placeholder="MM/AA" pattern="^(0[1-9]|1[0-2])\/\d{2}$" maxlength="4" />
+                                    <div class="invalid-feedback">Formato de validade inválido (MM/AA)</div>
+                                </div>
+
+                                <div class="col-6">
+                                    <label for="ccCVV" class="form-label">CVV</label>
+                                    <input type="tel" class="form-control" id="ccCVV" placeholder="" pattern="^\d{3,4}$" maxlength="4" />
+                                    <div class="invalid-feedback">Código de segurança inválido</div>
+                                </div>
+                                <small class="w-100 text-center">Promoção: compra gratuita com o código: "FREE"</small>
+                            </div>
+
+                            <div class="col-10 col-md-3 p-2 ms-2 text-center order-md-last bg-body-tertiary shadow rounded">
+                                <strong class="w-100">QRCODE apenas pra TESTE</strong>
+                                <div class="mx-auto">
+                                    <img class="w-100" src="~/Content/Images/chart.png" alt="qrCode" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr class="my-4" />
+                        <!--FORMULARIO ENVIO-->
+                        <div class="w-100 my-3 d-flex align-content-center">
+                            <button class="w-50 mx-auto text-uppercase btn btn-lg btn-success" type="submit">Finalizar Compra</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        }
+    </main>
+</div>
+
+
+<div class="row">@Html.ActionLink("Back to List", "Index")</div>
+
+<script type="text/javascript" src="~/Scripts/jquery-3.7.1.min.js"></script>
+<script type="text/javascript">
+    // AutoComplete do endereço
+    jQuery("#PostalCode").on("input", function () {
+        var myCep = jQuery(this).val();
+
+        if (myCep.length === 8) {
+            $.ajax({
+                url: "https://viacep.com.br/ws/" + myCep + "/json/",
+                //method: "GET",
+                dataType: "json",
+                success: function (data) {
+                    jQuery("#Address").val(data.logradouro);
+                    jQuery("#District").val(data.bairro);
+                    jQuery("#City").val(data.localidade);
+                    jQuery("#State").val(data.uf);
+                    jQuery("#Country").val("Brasil");
+                    //jQuery("#AddressNumber").focus();
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log("Erro na requisição: " + textStatus);
+                    alert("CEP não encontrado!");
+                    jQuery("#delivery input").val(""); //limpando...
+                }
+            });
+        }
+    });
+</script>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

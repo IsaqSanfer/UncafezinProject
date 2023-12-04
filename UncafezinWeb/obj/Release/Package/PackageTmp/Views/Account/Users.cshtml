@@ -1,0 +1,50 @@
+﻿@model List<UncafezinWeb.Models.UsersViewModel>
+@{
+    ViewBag.Title = "Users";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br /><br />
+<a href="@Url.Action("Users", "Account")" class="btn btn-default">Users</a>  <a href="@Url.Action("Role", "Account")" class="btn btn-default">Role</a>
+
+<h2>Users</h2>
+
+<p>
+    @Html.ActionLink("Create User", "Register", "Account")
+</p>
+
+@if (Model != null)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Users</th>
+                <th>Roles</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.UserName)</td>
+                    <td>
+                        @if (item.RolesUser != null)
+                        {
+                            foreach (var role in item.RolesUser)
+                            {
+                                <span>[@Html.DisplayFor(modelItem => role)] </span>
+                            }
+                        }
+                    </td>
+                    <td>
+                        @Html.ActionLink("Role", "UserRole", new { id = item.UserId }) |
+                        @Html.ActionLink("Nova Senha", "ChangePassword", "Manage", new { id = item.UserId }) |
+                        @Html.ActionLink("Deletar Usuario", "DeleteUser", new { id = item.UserId }, new { @onclick = "return confirm('Tem certeza que deseja excluir este usuário?')" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+

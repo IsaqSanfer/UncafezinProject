@@ -19,12 +19,11 @@
                         title="Alternar a navegação" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse d-sm-inline-flex justify-content-end">
+                <div class="collapse navbar-collapse d-sm-inline-flex text-end justify-content-end">
                     <ul class="navbar-nav navbar-right">
                         @*<li class="nav-item">@Html.ActionLink("Página Inicial", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>*@
-                        <li class="nav-item">@Html.ActionLink("Nossas Lojas", "Stores", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                         @*<li class="nav-item">@Html.ActionLink("Teste", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>*@
-                        <li class="nav-item me-2">
+                        <li class="nav-item d-none d-sm-block me-2">
                             <button type="button" class="btn btn-dark position-relative" title="Ir para o Carrinho" onclick="window.location.href='@Url.Action("Index", "ShoppingCart")'">
                                 Carrinho
                                 <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger text-light">
@@ -33,6 +32,7 @@
                                 </span>
                             </button>
                         </li>
+                        <li class="nav-item">@Html.ActionLink("Nossas Lojas", "Stores", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                         @if (User.IsInRole("Admin"))
                         {
                             <li class="nav-item"><a class="nav-link" href="@Url.Content("~/Dashboard/")">Admin</a></li>
@@ -44,7 +44,6 @@
         </nav>
     </header>
     <main role="main" class="container body-content mt-4">
-        @*@{Html.RenderAction("DeptMenu", "Home");}*@
         @RenderBody()
     </main>
 

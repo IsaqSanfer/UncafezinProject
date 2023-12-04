@@ -1,0 +1,22 @@
+﻿@model IEnumerable<UncafezinWeb.Entities.Category>
+
+
+<div class="d-flex flex-column flex-shrink-0 h-100 p-3 pt-lg-5 bg-body-tertiary" style="width: 280px">
+    <a href="/" class="d-flex align-items-baseline mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+        <img class="rounded pe-none me-2" width="40" height="32" src="~/Content/Images/placeholder.gif" />
+        <span class="fs-4">Departamentos</span>
+    </a>
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto">
+        @foreach (var item in Model)
+        {
+            <li>
+                <a class="nav-link d-inline-flex link-body-emphasis" href="@Url.Action("Browse", new { id = item.CategoryId })">
+                    <span class="material-symbols-outlined text-warning pe-3">stars</span>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </a>
+            </li>
+            <li><hr /></li>
+        }
+    </ul>
+</div>

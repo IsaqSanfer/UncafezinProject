@@ -1,0 +1,43 @@
+﻿@model UncafezinWeb.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Registre-se";
+}
+
+<style type="text/css">
+    footer {
+        display: none !important
+    }
+</style>
+
+<main class="form-signin text-center w-100 m-auto rounded shadow-lg" style=" max-width: 330px; padding: 1rem;" aria-labelledby="title">
+    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        <img width="72" height="57" class="mb-4 mx-auto" src="~/Content/Images/placeholder.gif" alt="logo" />
+        <h4>Crie sua nova conta</h4>
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-floating">
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "name@example.com", type = "email" })
+            @Html.LabelFor(m => m.Email, new { @class = "form-label" })
+        </div>
+        <div class="form-floating">
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Password", type = "password" })
+            @Html.LabelFor(m => m.Password, new { @class = "form-label" })
+        </div>
+        <div class="form-floating my-3">
+            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control"})
+            @Html.LabelFor(m => m.ConfirmPassword, new { @class = "form-label" })
+        </div>
+
+        <button type="submit" class="btn btn-lg btn-outline-warning w-75 mx-auto">Registrar</button>
+
+        <hr />
+        <p class="my-5 text-body-secondary">&copy; @DateTime.Now.Year - Uncafezin</p>
+    }
+</main>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

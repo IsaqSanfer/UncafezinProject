@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Meu Aplicativo ASP.NET</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body class="d-flex flex-column min-vh-100">
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
+            <div class="container">
+                @Html.ActionLink("Uncafezin", "Index", "Home", new { area = "" }, new { title = "Página Inicial", @class = "navbar-brand" })
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
+                        title="Alternar a navegação" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse d-sm-inline-flex justify-content-end">
+                    <ul class="navbar-nav navbar-right">
+                        @*<li class="nav-item">@Html.ActionLink("Página Inicial", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>*@
+                        <li class="nav-item">@Html.ActionLink("Nossas Lojas", "Stores", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                        @*<li class="nav-item">@Html.ActionLink("Teste", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>*@
+                        <li class="nav-item me-2">
+                            <button type="button" class="btn btn-dark position-relative" title="Ir para o Carrinho" onclick="window.location.href='@Url.Action("Index", "ShoppingCart")'">
+                                Carrinho
+                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger text-light">
+                                    @{Html.RenderAction("CartSummary", "ShoppingCart");}
+                                    <span class="visually-hidden">itens no carrinho</span>
+                                </span>
+                            </button>
+                        </li>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item"><a class="nav-link" href="@Url.Content("~/Dashboard/")">Admin</a></li>
+                        }
+                    </ul>
+                    @Html.Partial("_LoginPartial")
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main role="main" class="container body-content mt-4">
+        @*@{Html.RenderAction("DeptMenu", "Home");}*@
+        @RenderBody()
+    </main>
+
+    <footer class="footer border-top mt-auto text-muted">
+        <div class="container-fluid d-inline-flex justify-content-between align-items-baseline">
+            <span>
+                &copy; @DateTime.Now.Year - Uncafezin - @Html.ActionLink("Sobre", "About", "Home", new { area = "" })
+            </span>
+            <ul class="nav justify-content-end list-unstyled d-flex">
+                <li>
+                    <a class="nav-link" title="Github de Isael" href="https://github.com/IsaqSanfer">
+                        <svg height="32" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="32" data-view-component="true" class="octicon octicon-mark-github v-align-middle color-fg-default">
+                            <path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"></path>
+                        </svg>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-link" href="https://linkedin.com/in/isaelferreira/">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34 34" data-supported-dps="34x34" width="34" height="34" focusable="false">
+                            <g transform="scale(.7083)" fill="none" fill-rule="evenodd">
+                                <rect class="bug-text-color" fill="#FFF" x="1" y="1" width="46" height="46" rx="4"></rect>
+                                <path d="M0 4.01A4.01 4.01 0 014.01 0h39.98A4.01 4.01 0 0148 4.01v39.98A4.01 4.01 0 0143.99 48H4.01A4.01 4.01 0 010 43.99V4.01zM19 18.3h6.5v3.266C26.437 19.688 28.838 18 32.445 18 39.359 18 41 21.738 41 28.597V41.3h-7V30.159c0-3.906-.937-6.109-3.32-6.109-3.305 0-4.68 2.375-4.68 6.109V41.3h-7v-23zM7 41h7V18H7v23zm8-30.5a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0z" class="background" fill="#0077B5"></path>
+                            </g>
+                        </svg>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </footer>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

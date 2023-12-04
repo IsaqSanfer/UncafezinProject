@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="UncafezinContext-Web.config Connection String" description="UncafezinContext A Cadeia de Conexão usada em web.config pelo aplicativo para acessar o banco de dados." defaultValue="Server=tcp:uncafezinserver.database.windows.net,1433;Initial Catalog=UncafezinData;Persist Security Info=False;User ID=22220631@aluno.cruzeirodosul.edu.br;Password=@Z3phyr.S0ng;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Authentication='Active Directory Password';" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\isael\\source\\repos\\UncafezinProject\\UncafezinWeb\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='UncafezinContext']/@connectionString" />
+  </parameter>
+</parameters>

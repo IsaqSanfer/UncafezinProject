@@ -1,0 +1,22 @@
+﻿@model int
+@*@model UncafezinWeb.Entities.Order*@
+
+@{
+    ViewBag.Title = "Complete";
+}
+
+<main class="form-signin text-center p-3 w-100 m-auto rounded-4 shadow-lg" style="max-width: 330px" aria-labelledby="title">
+
+    <img width="72" height="57" class="mb-4 mx-auto" src="~/Content/Images/placeholder.gif" alt="logo" />
+
+    <h2>Compra Realizada!</h2>
+    <hr />
+
+    <p class="text-center">
+        Obrigado pelo seu pedido! O número do seu pedido é: @Model.
+        <br />
+        Veja outros produtos enquando aguarda sua entrega!
+    </p>
+
+    @Html.ActionLink("Voltar", "Index", "Home", new { area = "" }, new { title = "Página Inicial", @class = "btn btn-lg btn-outline-success w-75 mx-autonav" })
+</main>

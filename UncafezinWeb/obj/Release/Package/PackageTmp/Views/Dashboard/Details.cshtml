@@ -1,0 +1,37 @@
+﻿@model UncafezinWeb.Entities.Product
+
+<div class="row">
+    <h4>Detalhes de: @Html.DisplayFor(model => model.Name)</h4>
+    <hr />
+</div>
+
+<div class="row row-cols-1 row-cols-md-2 mb-3">
+    <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm">
+            <div class="card-header py-3">
+                <h4 class="my-0 fw-normal text-center">@Html.DisplayFor(model => model.Name)</h4>
+            </div>
+            <div class="card-body">
+                <h1 class="card-title pricing-card-title text-end"><small class="text-body-secondary fw-light">R$ </small>@Html.DisplayFor(model => model.Price)</h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                    <li><strong>Categoria</strong></li>
+                    <li>@Html.DisplayFor(model => model.Category.Name)</li>
+
+                    <li><strong>@Html.DisplayNameFor(model => model.Name)</strong></li>
+                    <li>@Html.DisplayFor(model => model.Name)</li>
+
+                    <li><strong>@Html.DisplayNameFor(model => model.Description)</strong></li>
+                    <li>@Html.DisplayFor(model => model.Description)</li>
+
+                    <li><strong>@Html.DisplayNameFor(model => model.ImgLink)</strong></li>
+                    <li>@Html.DisplayFor(model => model.ImgLink)</li>
+                </ul>
+                @Html.ActionLink("Editar", "Edit", new { id = Model.ProductId }, new { @class = "btn btn-sm btn-outline-info mx-1" })
+                @Html.ActionLink("Excluir", "Delete", new { id = Model.ProductId }, new { @class = "btn btn-sm btn-outline-danger" })
+            </div>
+        </div>
+    </div>
+    <div class="col text-center">
+        <img class="img-thumbnail mx-auto h-auto w-75" src="~/Content/Images/placeholder.gif" alt="Imagem de @Html.DisplayFor(model => model.Name)">
+    </div>
+</div>
